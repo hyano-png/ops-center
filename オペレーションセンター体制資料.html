@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>オペレーションセンター 体制資料</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:    #1E2761;
+    --purple:  #5B4DA8;
+    --purple-l:#EAE8F8;
+    --teal:    #028090;
+    --teal-l:  #D6F0F3;
+    --coral:   #C05830;
+    --coral-l: #FAE8E1;
+    --gray:    #64748B;
+    --gray-l:  #F1F5F9;
+    --amber:   #B45309;
+    --amber-l: #FEF3C7;
+    --green:   #0F6E56;
+    --green-l: #D1FAE5;
+    --slate:   #334155;
+    --border:  #CBD5E1;
+    --bg:      #F8FAFC;
+    --white:   #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--slate); font-size: 14px; line-height: 1.6; }
+
+  .page-header { background: var(--navy); padding: 48px 60px 40px; position: relative; overflow: hidden; }
+  .page-header::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #CADCFC; }
+  .page-header h1 { font-family: 'DM Sans', 'Noto Sans JP', sans-serif; font-size: 32px; font-weight: 600; color: #fff; letter-spacing: -0.5px; }
+  .page-header p { color: #CADCFC; font-size: 15px; margin-top: 6px; }
+  .page-header .meta { margin-top: 16px; font-size: 12px; color: rgba(202,220,252,0.7); }
+
+  .section { padding: 48px 60px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ポジション別役割 */
+  .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .role-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .role-card-header { padding: 14px 18px 12px; border-bottom: 1px solid var(--border); }
+  .role-badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+  .role-card-body { padding: 14px 18px 16px; }
+  .role-duty { font-size: 13px; color: var(--slate); line-height: 1.7; }
+  .role-note { margin-top: 10px; font-size: 12px; color: var(--gray); }
+
+  /* 追加情報ボックス */
+  .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
+  .info-box { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .info-box-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .info-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  .info-box p { font-size: 12.5px; color: var(--slate); line-height: 1.65; }
+  .info-box .sub-note { margin-top: 7px; font-size: 11.5px; color: var(--gray); line-height: 1.6; padding-left: 10px; border-left: 2px solid var(--border); }
+
+  /* 体制図 */
+  .org-chart { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 36px 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .cs-fs-box { background: var(--amber-l); border: 1.5px solid var(--amber); border-radius: 10px; padding: 10px 28px; font-weight: 700; font-size: 15px; color: var(--amber); width: 110px; text-align: center; }
+  .arrow-down-amber { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid var(--amber); margin: 0 auto; }
+  .vline { width: 2px; background: var(--border); margin: 0 auto; }
+  .mgmt-box { max-width: 320px; margin: 0 auto; background: var(--purple-l); border: 2px solid var(--purple); border-radius: 10px; padding: 14px 20px; text-align: center; }
+  .mgmt-box .label { font-size: 11px; font-weight: 600; color: var(--purple); margin-bottom: 4px; }
+  .mgmt-box .name  { font-size: 17px; font-weight: 700; color: var(--purple); }
+  .mgmt-box .sub   { font-size: 11px; color: #7C6BBE; margin-top: 4px; }
+  .hline-wrap { position: relative; height: 28px; }
+  .hline { position: absolute; left: 10%; right: 10%; top: 50%; height: 2px; background: var(--border); transform: translateY(-50%); }
+  .leader-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .leader-box { background: var(--teal-l); border: 1.5px solid var(--teal); border-radius: 10px; padding: 12px 10px; text-align: center; }
+  .leader-box.green { background: var(--green-l); border-color: var(--green); }
+  .leader-box .l-title { font-size: 11px; font-weight: 700; color: var(--teal); }
+  .leader-box.green .l-title { color: var(--green); }
+  .leader-box .l-name  { font-size: 13px; font-weight: 700; color: var(--teal); margin-top: 3px; }
+  .leader-box.green .l-name { color: var(--green); }
+  .leader-box .l-sub   { font-size: 10px; color: var(--gray); margin-top: 4px; line-height: 1.4; }
+  .pattern-section { margin-top: 10px; }
+  .pattern-main { border: 1.5px solid var(--coral); background: #FFF7ED; border-radius: 10px; padding: 14px 20px; text-align: center; }
+  .pattern-main .pm-label { font-size: 10px; font-weight: 700; color: var(--coral); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .pattern-main .pm-text { font-size: 13px; font-weight: 600; color: var(--coral); }
+  .pattern-sub { margin-top: 10px; padding: 10px 16px; background: var(--gray-l); border-radius: 8px; font-size: 12px; color: var(--gray); }
+  .pattern-sub strong { color: var(--slate); }
+
+  /* レポートライン & 白井注記 */
+  .report-line-box { margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .rl-card { padding: 12px 16px; border-radius: 8px; font-size: 12px; line-height: 1.65; }
+  .rl-card.purple { background: #F3F0FF; border-left: 3px solid var(--purple); color: var(--purple); }
+  .rl-card.green  { background: var(--green-l); border-left: 3px solid var(--green); color: var(--green); }
+  .rl-card .rl-title { font-weight: 700; margin-bottom: 4px; font-size: 11px; letter-spacing: 0.5px; }
+
+  /* 案件一覧 */
+  .cat-section { margin-bottom: 36px; }
+  .cat-section:last-child { margin-bottom: 0; }
+  .cat-header { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 8px 8px 0 0; }
+  .cat-header .cat-name { font-weight: 700; font-size: 13px; color: var(--white); }
+  .cat-header .cat-leader-chip { font-size: 11px; font-weight: 600; background: rgba(255,255,255,0.25); color: var(--white); padding: 2px 10px; border-radius: 12px; }
+  .cat-header .cat-role { font-size: 11px; color: rgba(255,255,255,0.8); margin-left: auto; }
+  .cat-fudosan .cat-header { background: var(--teal); }
+  .cat-saiene  .cat-header { background: var(--green); }
+  .cat-yane    .cat-header { background: var(--coral); }
+  .cat-other   .cat-header { background: var(--gray); }
+  table.projects { width: 100%; border-collapse: collapse; background: var(--white); border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px; overflow: hidden; }
+  table.projects th { background: var(--gray-l); font-size: 11px; font-weight: 600; color: var(--gray); padding: 8px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  table.projects td { padding: 12px 14px; vertical-align: top; border-bottom: 1px solid var(--border); font-size: 13px; }
+  table.projects tr:last-child td { border-bottom: none; }
+  table.projects tr:nth-child(even) td { background: #FAFBFC; }
+  .num { color: var(--gray); font-size: 12px; width: 32px; }
+  .chip { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 12px; white-space: nowrap; }
+  .chip-tanto  { background: var(--coral-l); color: var(--coral); }
+  .chip-member { background: var(--gray-l); color: var(--gray); }
+  .person-name { font-size: 14px; font-weight: 600; color: var(--slate); margin-top: 3px; }
+  .person-sub  { font-size: 11px; color: var(--gray); margin-top: 1px; }
+  .arrow-txt   { font-size: 11px; color: var(--gray); }
+  .note-txt    { font-size: 11px; color: var(--amber); font-style: italic; }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<div class="page-header">
+  <h1>オペレーションセンター</h1>
+  <p>体制図 &amp; 既存案件一覧</p>
+  <div class="meta">全体管理：矢野</div>
+</div>
+
+<!-- ① 体制図（トップ） -->
+<div class="section">
+  <div class="section-title">体制図</div>
+
+  <div class="org-chart">
+
+    <!-- CS/FS -->
+    <div style="position:relative;display:flex;justify-content:space-between;align-items:center;margin-bottom:0;">
+      <div class="cs-fs-box">CS</div>
+      <div style="flex:1;position:relative;height:2px;margin:0 8px;">
+        <div style="position:absolute;top:0;left:0;right:0;border-top:2px dashed var(--amber);"></div>
+        <div style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--amber);white-space:nowrap;background:var(--white);padding:0 8px;">案件依頼（カテゴリーリーダーへ直通）</div>
+      </div>
+      <div class="cs-fs-box">FS</div>
+    </div>
+
+    <div style="display:flex;justify-content:center;margin-top:12px;">
+      <div class="arrow-down-amber"></div>
+    </div>
+
+    <!-- 全体管理 -->
+    <div style="margin:8px 0;">
+      <div class="mgmt-box">
+        <div class="label">全体管理</div>
+        <div class="name">矢野</div>
+        <div class="sub">工数・採用・重要案件統括・エスカレーション最終判断</div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:center;">
+      <div class="vline" style="height:20px;"></div>
+    </div>
+    <div class="hline-wrap"><div class="hline"></div></div>
+
+    <!-- リーダー層 -->
+    <div class="leader-grid">
+      <div>
+        <div class="leader-box green">
+          <div class="l-title">探索方法</div>
+          <div class="l-name" style="color:var(--green)">リーダー：白井</div>
+          <div class="l-sub" style="color:var(--green);opacity:.75">アドバイザー<br>全カテゴリーへのナレッジ横展開</div>
+        </div>
+      </div>
+      <div>
+        <div class="leader-box">
+          <div class="l-title">不動産</div>
+          <div class="l-name">リーダー：菊地</div>
+          <div class="l-sub">進捗把握・品質統一<br>横断ブラッシュアップ</div>
+        </div>
+      </div>
+      <div>
+        <div class="leader-box">
+          <div class="l-title">再エネ</div>
+          <div class="l-name">リーダー：石川</div>
+          <div class="l-sub">進捗把握・品質統一<br>横断ブラッシュアップ</div>
+        </div>
+      </div>
+      <div>
+        <div class="leader-box">
+          <div class="l-title">屋根</div>
+          <div class="l-name">リーダー：矢野</div>
+          <div class="l-sub">進捗把握・品質統一<br>横断ブラッシュアップ</div>
+        </div>
+      </div>
+      <div>
+        <div class="leader-box">
+          <div class="l-title">スポット</div>
+          <div class="l-name">リーダー：小林(香)</div>
+          <div class="l-sub">進捗把握・品質統一<br>メンバー管理</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 方法検討ラベル -->
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:6px;">
+      <div></div>
+      <div style="text-align:center;font-size:10px;color:var(--gray);">方法検討・工数振り分け</div>
+      <div style="text-align:center;font-size:10px;color:var(--gray);">方法検討・工数振り分け</div>
+      <div style="text-align:center;font-size:10px;color:var(--gray);">方法検討・工数振り分け</div>
+      <div></div>
+    </div>
+
+    <!-- メインパターン -->
+    <div class="pattern-section">
+      <div class="pattern-main">
+        <div class="pm-label">メインパターン</div>
+        <div class="pm-text">カテゴリーリーダー ＋ 主担当（案件の舵とり・CS連携）</div>
+      </div>
+      <div class="pattern-sub">
+        <strong>ボリュームの多い案件：</strong>主担当 ＋ 作業メンバーを追加アサイン
+      </div>
+    </div>
+
+    <!-- レポートライン & 白井注記 -->
+    <div class="report-line-box">
+      <div class="rl-card purple">
+        <div class="rl-title">📋 レポートライン（個別案件のエスカレーション・相談）</div>
+        メンバー → 主担当 → カテゴリーリーダー → 全体管理（直属ライン直通）
+      </div>
+      <div class="rl-card green">
+        <div class="rl-title">💬 探索方法・WHEREの使い方に関する質問</div>
+        一律で白井さんに確認 → <strong>@ops-question</strong>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ② ポジション別役割 -->
+<div class="section">
+  <div class="section-title">ポジション別役割</div>
+  <div class="role-grid">
+
+    <div class="role-card">
+      <div class="role-card-header">
+        <div class="role-badge" style="background:var(--teal-l);color:var(--teal)">カテゴリーリーダー</div>
+      </div>
+      <div class="role-card-body">
+        <div class="role-duty">案件の進捗把握・メンバーアサイン・探索方法の検討・工数振り分けて主担当へ依頼</div>
+        <div class="role-note">カテゴリーリーダーは業務時間内に日次で60分リーダー業務の時間を抑えています。<br>※スポットリーダーは20分</div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-header">
+        <div class="role-badge" style="background:var(--coral-l);color:var(--coral)">主担当</div>
+      </div>
+      <div class="role-card-body">
+        <div class="role-duty">案件の舵をとる。進捗管理・品質管理・カテゴリーLへの適切な報告</div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-card-header">
+        <div class="role-badge" style="background:var(--gray-l);color:var(--gray)">作業メンバー</div>
+      </div>
+      <div class="role-card-body">
+        <div class="role-duty">計画遂行・品質担保</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 追加情報3カード -->
+  <div class="info-grid">
+
+    <div class="info-box">
+      <div class="info-box-label">
+        <span class="info-dot" style="background:var(--amber)"></span>
+        <span style="color:var(--amber)">CS / FS との連携</span>
+      </div>
+      <p>案件に関するやりとりは<strong>基本、主担当が実施</strong></p>
+      <div class="sub-note">判断に悩む場合（例：CSから増枠依頼など）は<strong>カテゴリーリーダーに確認</strong></div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-box-label">
+        <span class="info-dot" style="background:var(--green)"></span>
+        <span style="color:var(--green)">白井さんの役割（アドバイザー）</span>
+      </div>
+      <p>探索方法に迷う場合は<strong>カテゴリーリーダーが白井さんに相談</strong>してください（<strong>@ops-question</strong>）</p>
+      <div class="sub-note">案件の探索条件の設定に迷う場合の相談先。※探索方法を丸投げするのではなく、アドバイスをもらうイメージ。ゆくゆくはリーダーだけでなく主担当も自ら探索方法を考えられるようになることが目標</div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-box-label">
+        <span class="info-dot" style="background:var(--teal)"></span>
+        <span style="color:var(--teal)">カテゴリーリーダーの横断業務</span>
+      </div>
+      <p>カテゴリー横断で<strong>運用方法のブラッシュアップ</strong>にも取り組む</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ③ 案件一覧 -->
+<div class="section">
+  <div class="section-title">既存案件一覧</div>
+
+  <!-- 不動産 -->
+  <div class="cat-section cat-fudosan">
+    <div class="cat-header">
+      <span class="cat-name">不動産</span>
+      <span class="cat-leader-chip">カテゴリーL：菊地</span>
+      <span class="cat-role">進捗把握・アサイン・探索方法検討</span>
+    </div>
+    <table class="projects">
+      <thead><tr><th class="num">#</th><th>案件名</th><th style="width:220px">主担当</th><th style="width:220px">作業メンバー</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="num">1</td><td><strong>リーフ</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">菊地</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span class="chip chip-member">メンバー</span><div class="person-name">宮脇・小林(美)・金城</div><div class="person-sub">計画遂行・品質担保</div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">2</td><td><strong>アセットリード</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">白井 <span class="arrow-txt">→</span> 菊地</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span class="chip chip-member">メンバー</span><div class="person-name">松原</div><div class="person-sub">計画遂行・品質担保</div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">3</td><td><strong>新都市ライフ</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">白井 <span class="arrow-txt">→</span> 菊地</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span class="chip chip-member">メンバー</span><div class="person-name">松原</div><div class="person-sub">計画遂行・品質担保</div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">4</td><td><strong>ネスリンク</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">白井</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span class="chip chip-member">メンバー</span><div class="person-name">松原</div><div class="person-sub">計画遂行・品質担保</div></td>
+          <td><span class="note-txt">いろいろ提案したい案件</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 再エネ -->
+  <div class="cat-section cat-saiene">
+    <div class="cat-header">
+      <span class="cat-name">再エネ</span>
+      <span class="cat-leader-chip">カテゴリーL：石川</span>
+      <span class="cat-role">進捗把握・アサイン・探索方法検討</span>
+    </div>
+    <table class="projects">
+      <thead><tr><th class="num">#</th><th>案件名</th><th style="width:220px">主担当</th><th style="width:220px">作業メンバー</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="num">5</td><td><strong>novisエンジニアリング</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">石川</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span class="chip chip-member">メンバー</span><div class="person-name">後藤</div><div class="person-sub">計画遂行・品質担保</div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">6</td><td><strong>Fit Founder</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">小出水</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span style="color:var(--gray);font-size:13px;">−</span></td><td></td>
+        </tr>
+        <tr>
+          <td class="num">7</td><td><strong>エンブルー</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">白井</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span style="color:var(--gray);font-size:13px;">−</span></td><td></td>
+        </tr>
+        <tr>
+          <td class="num">8</td><td><strong>エナジーユース</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">白井</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span style="color:var(--gray);font-size:13px;">−</span></td><td></td>
+        </tr>
+        <tr>
+          <td class="num">9</td><td><strong>アグリード</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">白井</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span style="color:var(--gray);font-size:13px;">−</span></td><td></td>
+        </tr>
+        <tr>
+          <td class="num">10</td><td><strong>日本エネック</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">石川</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span class="chip chip-member">メンバー</span><div class="person-name">小出水</div><div class="person-sub">計画遂行・品質担保</div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">11</td><td><strong>神戸エネルギー</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">後藤</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span class="chip chip-member">メンバー</span><div class="person-name">渡辺(未)</div><div class="person-sub">計画遂行・品質担保</div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">12</td><td><strong>Gxエンジニアリング</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">石川</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span class="chip chip-member">メンバー</span><div class="person-name">三木</div><div class="person-sub">計画遂行・品質担保</div></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 屋根 -->
+  <div class="cat-section cat-yane">
+    <div class="cat-header">
+      <span class="cat-name">屋根</span>
+      <span class="cat-leader-chip">カテゴリーL：矢野</span>
+      <span class="cat-role">進捗把握・アサイン・探索方法検討</span>
+    </div>
+    <table class="projects">
+      <thead><tr><th class="num">#</th><th>案件名</th><th style="width:220px">主担当</th><th style="width:220px">作業メンバー</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="num">13</td><td><strong>JR</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">矢野</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span style="color:var(--gray);font-size:13px;">未定</span></td><td></td>
+        </tr>
+        <tr>
+          <td class="num">14</td><td><strong>キュービクル案件</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">矢野</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span style="color:var(--gray);font-size:13px;">未定</span></td><td></td>
+        </tr>
+        <tr>
+          <td class="num">15</td><td><strong>陸屋根案件 JR</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">矢野</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span style="color:var(--gray);font-size:13px;">未定</span></td><td></td>
+        </tr>
+        <tr>
+          <td class="num">16</td><td><strong>ライジングコーポレーション(屋根) JR</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">矢野</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span style="color:var(--gray);font-size:13px;">未定</span></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 注力・その他 -->
+  <div class="cat-section cat-other">
+    <div class="cat-header">
+      <span class="cat-name">注力・その他</span>
+    </div>
+    <table class="projects">
+      <thead><tr><th class="num">#</th><th>案件名</th><th style="width:220px">主担当</th><th style="width:220px">作業メンバー</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="num">17</td><td><strong>大和エネルギー</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">矢野</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span class="chip chip-member">メンバー</span><div class="person-name">島尻</div><div class="person-sub">計画遂行・品質担保</div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">18</td><td><strong>パワーエックス</strong></td>
+          <td><span class="chip chip-tanto">主担当</span><div class="person-name">矢野</div><div class="person-sub">案件の舵とり・進捗管理・品質管理</div></td>
+          <td><span class="chip chip-member">メンバー</span><div class="person-name">小林(香)</div><div class="person-sub">計画遂行・品質担保</div></td>
+          <td><span class="note-txt">注力案件</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>
